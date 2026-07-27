@@ -628,7 +628,7 @@ const Page = () => {
       setEditingCategory(null);
     }
   };
-
+// ss
   const handleEditClick = (category: ServiceCategory) => {
     setEditingCategory(category);
     setIsEditDialogOpen(true);
