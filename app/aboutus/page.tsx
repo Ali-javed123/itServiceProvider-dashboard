@@ -144,7 +144,7 @@ export default function AboutPage() {
     </div>
   );
 }
-
+// sss
 // About Content Component with Dynamic Rendering
 function AboutContent({ data, onEdit, onDelete }: { data: IPage; onEdit: () => void,onDelete: () => void }) {
   return (
