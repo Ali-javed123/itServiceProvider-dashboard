@@ -20,7 +20,7 @@ const getAuthToken = (): string | null => {
 
 const clearAuthToken = () => {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem('token');
   }
 };
 

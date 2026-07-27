@@ -34,5 +34,6 @@ export interface ServiceFormValues {
   description: string;
   category: string;
   icon: string;
-  image?: File;
+    image?: File | string; // ✅ File type for image
+
 }

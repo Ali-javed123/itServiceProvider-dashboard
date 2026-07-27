@@ -1,19 +1,21 @@
+// components/service/CreateServiceDialog.tsx
 import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { CategoryItem, ServiceFormValues } from '@/types/service.types';
+  DialogDescription,
+} from '@/components/ui/dialog';
 import { ServiceForm } from './ServiceForm';
+import { CategoryItem, ServiceFormValues } from '@/types/service.types';
 
 interface CreateServiceDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   categories: CategoryItem[];
   isSubmitting: boolean;
-  onCreateService: (values: ServiceFormValues) => Promise<void> | void;
+  onCreateService: (values: ServiceFormValues) => Promise<void>;
 }
 
 export const CreateServiceDialog: React.FC<CreateServiceDialogProps> = ({
@@ -28,20 +30,20 @@ export const CreateServiceDialog: React.FC<CreateServiceDialogProps> = ({
   const initialValues: ServiceFormValues = {
     title: '',
     description: '',
-    category: '',
+    category: categories.length > 0 ? categories[0]._id : '',
     icon: '',
     image: undefined,
   };
 
   const handleSubmit = async (values: ServiceFormValues) => {
     await onCreateService(values);
-    // Reset form after successful submission
+    // Reset preview after submission
     setImagePreview(null);
   };
 
   const handleCancel = () => {
-    onOpenChange(false);
     setImagePreview(null);
+    onOpenChange(false);
   };
 
   return (
@@ -49,7 +51,11 @@ export const CreateServiceDialog: React.FC<CreateServiceDialogProps> = ({
       <DialogContent className="max-h-[90vh] max-w-3xl p-0 overflow-hidden">
         <DialogHeader className="sticky top-0 z-10 bg-background border-b px-6 py-4">
           <DialogTitle>Create New Service</DialogTitle>
+          <DialogDescription>
+            Fill in the details to create a new service.
+          </DialogDescription>
         </DialogHeader>
+
         <div className="overflow-y-auto max-h-[calc(90vh-140px)] px-6 py-4">
           <ServiceForm
             initialValues={initialValues}

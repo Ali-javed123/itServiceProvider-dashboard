@@ -1,4 +1,5 @@
-import React from 'react';
+// components/service/ServiceForm.tsx
+import React, { useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,7 @@ import {
 } from '@/components/ui/select';
 import { CategoryItem, ServiceFormValues } from '@/types/service.types';
 import { serviceSchema } from '@/validation/service.schema';
+import { X, Upload } from 'lucide-react';
 
 interface ServiceFormProps {
   initialValues: ServiceFormValues;
@@ -38,6 +40,16 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
   mode,
   currentImageUrl,
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleRemoveImage = (setFieldValue: any) => {
+    setFieldValue('image', undefined);
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -136,53 +148,99 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
               )}
             </div>
 
-            {/* Image */}
+            {/* Image - FIXED VERSION */}
             <div className="space-y-2">
               <Label htmlFor="image">
                 Service Image {mode === 'edit' && <span className="text-xs text-gray-500">(Leave empty to keep current)</span>}
               </Label>
-              <div className="flex items-center gap-4">
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={(event) => {
-                    const file = event.currentTarget.files?.[0];
-                    if (file) {
-                      setFieldValue('image', file);
-                      const reader = new FileReader();
-                      reader.onloadend = () => {
-                        setImagePreview(reader.result as string);
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  }}
-                  className="flex-1 text-sm text-gray-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-md file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-blue-50 file:text-blue-700
-                    hover:file:bg-blue-100
-                    dark:file:bg-gray-700 dark:file:text-blue-400"
-                />
-                {(imagePreview || (mode === 'edit' && currentImageUrl)) && (
-                  <div className="relative w-20 h-20 rounded-lg overflow-hidden border flex-shrink-0">
-                    <img 
-                      src={imagePreview || currentImageUrl} 
-                      alt="Preview" 
-                      className="w-full h-full object-cover" 
-                    />
-                    {mode === 'edit' && imagePreview !== currentImageUrl && imagePreview && (
-                      <div className="absolute bottom-0 left-0 right-0 bg-blue-500 text-white text-xs text-center py-0.5">
-                        New
-                      </div>
-                    )}
-                  </div>
-                )}
+              
+              <div className="flex flex-col gap-4">
+                {/* File Input */}
+                <div className="flex items-center gap-4">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    name="image"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    onChange={(event) => {
+                      const file = event.currentTarget.files?.[0];
+                      if (file) {
+                        // ✅ Set file in Formik
+                        setFieldValue('image', file);
+                        
+                        // ✅ Create preview
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                          setImagePreview(reader.result as string);
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    className="flex-1 text-sm text-gray-500
+                      file:mr-4 file:py-2 file:px-4
+                      file:rounded-md file:border-0
+                      file:text-sm file:font-semibold
+                      file:bg-blue-50 file:text-blue-700
+                      hover:file:bg-blue-100
+                      dark:file:bg-gray-700 dark:file:text-blue-400
+                      cursor-pointer"
+                  />
+                  
+                  {/* Image Preview */}
+                  {(imagePreview || (mode === 'edit' && currentImageUrl)) && (
+                    <div className="relative w-24 h-24 rounded-lg overflow-hidden border-2 border-gray-200 dark:border-gray-700 flex-shrink-0 group">
+                      <img 
+                        src={imagePreview || currentImageUrl} 
+                        alt="Preview" 
+                        className="w-full h-full object-cover" 
+                      />
+                      
+                      {/* Remove Button */}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(setFieldValue)}
+                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 
+                          opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                          hover:bg-red-600"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                      
+                      {/* New Badge for edit mode */}
+                      {mode === 'edit' && imagePreview && imagePreview !== currentImageUrl && (
+                        <div className="absolute bottom-0 left-0 right-0 bg-blue-500 text-white text-xs text-center py-0.5">
+                          New
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                
+                {/* Upload Button Alternative */}
+                <div className="flex items-center gap-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-2"
+                  >
+                    <Upload className="w-4 h-4" />
+                    Choose Image
+                  </Button>
+                  
+                  {(imagePreview || currentImageUrl) && (
+                    <span className="text-xs text-gray-500">
+                      {imagePreview ? 'New image selected' : 'Current image'}
+                    </span>
+                  )}
+                </div>
               </div>
+              
               <p className="text-xs text-gray-500">
                 Max size: 5MB. Supported: JPEG, PNG, WebP, GIF
               </p>
+              
               {errors.image && touched.image && (
                 <p className="text-sm text-red-500">{errors.image as string}</p>
               )}

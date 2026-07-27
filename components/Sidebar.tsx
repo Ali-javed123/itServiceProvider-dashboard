@@ -24,7 +24,7 @@ const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
   { icon: BarChart3, label: 'Service', href: '/services' },
   { icon: ChartBarStacked, label: 'Catgory Service', href: '/service-category' },
-  { icon: FileText, label: 'Reports', href: '/reports' },
+  { icon: FileText, label: 'AboutUs', href: '/aboutus' },
   { icon: Calendar, label: 'Calendar', href: '/calendar' },
   { icon: Mail, label: 'Messages', href: '/messages' },
   { icon: Settings, label: 'Settings', href: '/settings' },

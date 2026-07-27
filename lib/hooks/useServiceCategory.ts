@@ -19,7 +19,12 @@ export const useCategories = () => {
       setError(null);
       
       const response = await api.get<CategoryResponse>('/service-category', {
-        headers: { 'Cache-Control': 'no-cache' }
+    // headers: {
+    //   "Cache-Control": "no-cache",
+    //   "Pragma": "no-cache",
+    //   "Expires": "0",
+    // },
+
       });
       
       const payload = response.data;
