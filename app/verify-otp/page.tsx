@@ -135,7 +135,7 @@ export default function VerifyOtpPage() {
       
       if (!currentVerificationId) {
         alert("Session expired. Please login again.");
-        window.location.href = "/login";
+        window.location.href = "/";
         return;
       }
       
@@ -165,7 +165,7 @@ export default function VerifyOtpPage() {
       // Agar session expire ho gaya hai (401), to login page par bhej dein
       if (error.response?.status === 401) {
         sessionStorage.clear();
-        window.location.href = "/login";
+        window.location.href = "/";
       }
     } finally {
       setIsResending(false);
