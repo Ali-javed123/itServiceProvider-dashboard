@@ -27,7 +27,7 @@ export const useServiceManagement = () => {
         }
       }
     } catch (error) {
-      console.error('❌ Error fetching service categories:', error);
+      console.warn('❌ Error fetching service categories:', error);
       toast.error('Failed to load categories');
     } finally {
       setLoading(false);
@@ -71,7 +71,7 @@ export const useServiceManagement = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error creating service:', error);
+      console.warn('Error creating service:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
       return false;
     } finally {
@@ -116,7 +116,7 @@ export const useServiceManagement = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error updating service:', error);
+      console.warn('Error updating service:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
       return false;
     } finally {
@@ -139,7 +139,7 @@ export const useServiceManagement = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error deleting service:', error);
+      console.warn('Error deleting service:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
       return false;
     }

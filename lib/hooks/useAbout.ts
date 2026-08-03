@@ -20,7 +20,7 @@ export function useAbout() {
       }
     } catch (err) {
       toast.error('Failed to fetch about pages');
-      console.error('Fetch error:', err);
+      console.warn('Fetch error:', err);
     }
   }, [execute]);
 
@@ -34,7 +34,7 @@ export function useAbout() {
       }
     } catch (err) {
       toast.error('Failed to fetch about page');
-      console.error('Fetch error:', err);
+      console.warn('Fetch error:', err);
     }
   }, [execute]);
 
@@ -49,7 +49,7 @@ export function useAbout() {
       }
     } catch (err) {
       toast.error('Failed to create about page');
-      console.error('Create error:', err);
+      console.warn('Create error:', err);
     }
   }, [execute, fetchAll]);
 
@@ -65,7 +65,7 @@ export function useAbout() {
       }
     } catch (err) {
       toast.error('Failed to update about page');
-      console.error('Update error:', err);
+      console.warn('Update error:', err);
     }
   }, [execute, fetchById, fetchAll]);
 
@@ -83,7 +83,7 @@ export function useAbout() {
       }
     } catch (err) {
       toast.error('Failed to delete about page');
-      console.error('Delete error:', err);
+      console.warn('Delete error:', err);
     }
   }, [execute, fetchAll, aboutData]);
 

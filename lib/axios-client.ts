@@ -76,16 +76,16 @@ apiClient.interceptors.request.use(
 
 //       // 403 Forbidden
 //       if (status === 403) {
-//         console.error('Access Denied');
+//         console.warn('Access Denied');
 //       }
       
 //       // 500 Server Error
 //       if (status >= 500) {
-//         console.error('Server Error:', data?.message || 'Something went wrong');
+//         console.warn('Server Error:', data?.message || 'Something went wrong');
 //       }
 //     } else if (error.request) {
 //       // Network Error (Server respond hi nahi kiya)
-//       console.error('Network Error: Please check your internet connection.');
+//       console.warn('Network Error: Please check your internet connection.');
 //     }
 
 //     return Promise.reject(error);
@@ -114,14 +114,14 @@ apiClient.interceptors.response.use(
       }
 
       if (status === 403) {
-        console.error('Access Denied');
+        console.warn('Access Denied');
       }
 
       if (status >= 500) {
-        console.error('Server Error:', data?.message || 'Something went wrong');
+        console.warn('Server Error:', data?.message || 'Something went wrong');
       }
     } else if (error.request) {
-      console.error('Network Error: Please check your internet connection.');
+      console.warn('Network Error: Please check your internet connection.');
     }
 
     return Promise.reject(error);

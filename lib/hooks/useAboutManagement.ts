@@ -22,7 +22,7 @@ export const useAboutManagement = () => {
         }
       }
     } catch (error) {
-      console.error('❌ Error fetching about pages:', error);
+      console.warn('❌ Error fetching about pages:', error);
       toast.error('Failed to load about pages');
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ export const useAboutManagement = () => {
         toast.error(response?.message || 'Failed to create about page');
       }
     } catch (error: any) {
-      console.error('Error creating about page:', error);
+      console.warn('Error creating about page:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
     } finally {
       setIsSubmitting(false);
@@ -62,7 +62,7 @@ export const useAboutManagement = () => {
         toast.error(response?.message || 'Failed to update about page');
       }
     } catch (error: any) {
-      console.error('Error updating about page:', error);
+      console.warn('Error updating about page:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
     } finally {
       setIsSubmitting(false);
@@ -83,7 +83,7 @@ export const useAboutManagement = () => {
         toast.error(response?.message || 'Failed to delete about page');
       }
     } catch (error: any) {
-      console.error('Error deleting about page:', error);
+      console.warn('Error deleting about page:', error);
       toast.error(error.response?.data?.message || 'Something went wrong');
     }
   };

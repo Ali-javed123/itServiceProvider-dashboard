@@ -26,7 +26,7 @@ export const useBanner = () => {
         toast.error(response?.message || 'Failed to load banners');
       }
     } catch (error: any) {
-      console.error('❌ Error fetching banners:', error);
+      console.warn('❌ Error fetching banners:', error);
       toast.error(error?.message || 'Failed to load banners');
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ export const useBanner = () => {
         return response.data;
       }
     } catch (error: any) {
-      console.error('❌ Error fetching banner:', error);
+      console.warn('❌ Error fetching banner:', error);
       toast.error(error?.message || 'Failed to load banner');
     }
   }, []);
@@ -61,7 +61,7 @@ export const useBanner = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error creating banner:', error);
+      console.warn('Error creating banner:', error);
       toast.error(error?.message || 'Something went wrong');
       return false;
     } finally {
@@ -83,7 +83,7 @@ export const useBanner = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error updating banner:', error);
+      console.warn('Error updating banner:', error);
       toast.error(error?.message || 'Something went wrong');
       return false;
     } finally {
@@ -106,7 +106,7 @@ export const useBanner = () => {
         return false;
       }
     } catch (error: any) {
-      console.error('Error deleting banner:', error);
+      console.warn('Error deleting banner:', error);
       toast.error(error?.message || 'Something went wrong');
       return false;
     }

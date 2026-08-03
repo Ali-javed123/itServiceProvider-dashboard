@@ -106,7 +106,7 @@ export default function AboutFormModal({
           onSuccess?.();
         }
       } catch (error) {
-        console.error('Submit error:', error);
+        console.warn('Submit error:', error);
       } finally {
         setSubmitting(false);
       }

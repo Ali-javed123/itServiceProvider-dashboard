@@ -82,7 +82,7 @@
 //         console.warn('⚠️ Unexpected data format:', payload)
 //       }
 //     } catch (err: any) {
-//       console.error('❌ Error fetching categories:', err)
+//       console.warn('❌ Error fetching categories:', err)
 //       setError(err.message || 'Failed to load categories')
 //       toast.error('Failed to load categories')
 //     } finally {
@@ -115,7 +115,7 @@
 //         toast.error(payload.message || 'Failed to create category')
 //       }
 //     } catch (err: any) {
-//       console.error('❌ Error creating category:', err)
+//       console.warn('❌ Error creating category:', err)
 //       toast.error(err.response?.data?.message || 'Failed to create category')
 //     } finally {
 //       setIsSubmitting(false)
@@ -154,7 +154,7 @@
 //         toast.error(payload.message || 'Failed to update category')
 //       }
 //     } catch (err: any) {
-//       console.error('❌ Error updating category:', err)
+//       console.warn('❌ Error updating category:', err)
 //       toast.error(err.response?.data?.message || 'Failed to update category')
 //     } finally {
 //       setIsSubmitting(false)
@@ -192,7 +192,7 @@
 //         toast.error(payload.message || 'Failed to delete category')
 //       }
 //     } catch (err: any) {
-//       console.error('❌ Error deleting category:', err)
+//       console.warn('❌ Error deleting category:', err)
 //       toast.error(err.response?.data?.message || 'Failed to delete category')
 //     } finally {
 //       setTimeout(() => {

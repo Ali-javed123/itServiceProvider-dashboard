@@ -103,7 +103,7 @@ export default function VerifyOtpPage() {
       // }
       
     } catch (error) {
-      console.error('Verification failed:', error);
+      console.warn('Verification failed:', error);
       
       // Handle different error scenarios
       // if (error.response?.status === 400) {
@@ -156,7 +156,7 @@ export default function VerifyOtpPage() {
       formik.setFieldError("otp", undefined);
       
     } catch (error: any) {
-      console.error('Failed to resend OTP:', error);
+      console.warn('Failed to resend OTP:', error);
       
       // Backend se aaya hua exact error message dikhayein (e.g., "Please wait 15 seconds")
       const errorMsg = error.response?.data?.message || "Failed to resend OTP. Please try again.";

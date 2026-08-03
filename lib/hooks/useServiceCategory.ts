@@ -37,7 +37,7 @@ export const useCategories = () => {
         console.warn('⚠️ Unexpected data format:', payload);
       }
     } catch (err: any) {
-      console.error('❌ Error fetching categories:', err);
+      console.warn('❌ Error fetching categories:', err);
       setError(err.message || 'Failed to load categories');
       toast.error('Failed to load categories');
     } finally {
@@ -79,7 +79,7 @@ const createCategory = useCallback(
         toast.error(payload?.message ?? "Failed to create category");
         return { success: false };
       } catch (err: any) {
-        console.error("❌ Error creating category:", err);
+        console.warn("❌ Error creating category:", err);
         toast.error(
           err?.response?.data?.message ??
             err?.message ??
@@ -97,7 +97,7 @@ const createCategory = useCallback(
     [fetchCategories, isButtonDisabled]
   );
   // Update category
-  const updateCategory = useCallback(async (id: string, values: ServiceCategoryFormValues) => {
+  const updateCategory = useCallback(async (id: string, values: ServiceCategoryFormValues |any) => {
     if (!id || isSubmittingRef.current || isButtonDisabled) return;
     
     isSubmittingRef.current = true;
@@ -106,13 +106,13 @@ const createCategory = useCallback(
     
     try {
       const response = await api.put<SingleCategoryResponse>(`/service-category/${id}`, values);
-      const payload = response.data;
-      console.log("pyload",payload?.success)
+      const payload = response;
+      console.log("pyload",payload)
       if (payload.success ) {
-        console.log("")
-  toast.success(
-    `Category "${payload.data.serviceCategory}" created successfully!`
-  );
+            console.log("")
+      toast.success(
+        `Category "${(payload.data as any)?.serviceCategory}" updated successfully!`
+      );
 
   await fetchCategories();
 
@@ -125,7 +125,7 @@ const createCategory = useCallback(
       toast.error(payload?.message || 'Failed to update category');
       return { success: false };
     } catch (err: any) {
-      console.error('❌ Error updating category:', err);
+      console.warn('❌ Error updating category:', err);
       toast.error(err.response?.data?.message || 'Failed to update category');
       return { success: false };
     } finally {
@@ -159,7 +159,7 @@ const createCategory = useCallback(
       toast.error(payload?.message || 'Failed to delete category');
       return { success: false };
     } catch (err: any) {
-      console.error('❌ Error deleting category:', err);
+      console.warn('❌ Error deleting category:', err);
       toast.error(err.response?.data?.message || 'Failed to delete category');
       return { success: false };
     } finally {

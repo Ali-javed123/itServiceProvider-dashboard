@@ -25,7 +25,7 @@ const menuItems = [
   { icon: BarChart3, label: 'Service', href: '/services' },
   { icon: ChartBarStacked, label: 'Catgory Service', href: '/service-category' },
   { icon: FileText, label: 'AboutUs', href: '/aboutus' },
-  { icon: Calendar, label: 'Calendar', href: '/calendar' },
+  { icon: Calendar, label: 'Why Choose Us', href: '/chooseus' },
   { icon: Mail, label: 'Messages', href: '/messages' },
   { icon: Settings, label: 'Settings', href: '/settings' },
 ]

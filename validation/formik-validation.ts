@@ -26,7 +26,7 @@ export function zodToFormikValidation<T extends z.ZodTypeAny>(schema: T) {
         
         return {}; // No errors
       } catch (error) {
-        console.error('Validation error:', error);
+        console.warn('Validation error:', error);
         return {};
       }
     },
