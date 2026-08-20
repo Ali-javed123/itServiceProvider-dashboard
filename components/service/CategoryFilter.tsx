@@ -29,6 +29,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
     const category = categories.find(cat => cat._id === selectedCategory);
     return category?.services?.length || 0;
   };
+  console.log('Selected Category:', selectedCategory);
 
   return (
     <div className="mb-8 flex items-center gap-4 flex-wrap">

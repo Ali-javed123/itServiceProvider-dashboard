@@ -29,7 +29,7 @@ export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 15000, // 15 seconds timeout (Production ready)
   headers: {
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
 });

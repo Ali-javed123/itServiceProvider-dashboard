@@ -21,12 +21,13 @@ import { useSidebar } from '../app/dashboard/hooks/useSidebar'
 import { Button } from '@/components/ui/button'
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboad' },
   { icon: BarChart3, label: 'Service', href: '/services' },
   { icon: ChartBarStacked, label: 'Catgory Service', href: '/service-category' },
   { icon: FileText, label: 'AboutUs', href: '/aboutus' },
   { icon: Calendar, label: 'Why Choose Us', href: '/chooseus' },
-  { icon: Mail, label: 'Messages', href: '/messages' },
+  { icon: Mail, label: 'Our Benfits', href: '/ourbenefits' },
+  { icon: Mail, label: 'Teams', href: '/teams' },
   { icon: Settings, label: 'Settings', href: '/settings' },
 ]
 

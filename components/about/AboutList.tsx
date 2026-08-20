@@ -10,6 +10,7 @@ interface AboutListProps {
   onDeleteAbout: (id: string) => void;
 }
 
+
 export const AboutList: React.FC<AboutListProps> = ({
   aboutPages,
   onCreateClick,
